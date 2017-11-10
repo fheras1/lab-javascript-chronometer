@@ -1,6 +1,11 @@
+var chronometer = new Chronometer("btnLeft", "btnRight");
 // Start/Stop Button
 document.getElementById("btnLeft").addEventListener("click", function () {
-  console.log("Left button clicked");
+  if (this.classList.contains('start')) {
+    chronometer.startClick();
+  } else {
+    chronometer.stopClick();
+  }
 });
 
 // Reset/Split Button
