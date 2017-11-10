@@ -35,6 +35,12 @@ Chronometer.prototype.splitClick = function() {
   this.splits.appendChild(currentTime);
 };
 
+Chronometer.prototype.resetClick = function() {
+  this.splits.innerHTML = '';
+  this.time = undefined;
+  this.setTime();
+}
+
 Chronometer.prototype.setStartBtn = function() {
   this.leftBtn.innerHTML = '';
   this.leftBtn.classList.remove('stop');
