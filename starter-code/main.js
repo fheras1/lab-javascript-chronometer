@@ -1,4 +1,4 @@
-var chronometer = new Chronometer("btnLeft", "btnRight");
+var chronometer = new Chronometer("btnLeft", "btnRight", "display");
 // Start/Stop Button
 document.getElementById("btnLeft").addEventListener("click", function () {
   if (this.classList.contains('start')) {
