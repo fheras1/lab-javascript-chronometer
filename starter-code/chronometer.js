@@ -1,7 +1,8 @@
-function Chronometer(leftBtnId, rightBtnId, displayId) {
+function Chronometer(leftBtnId, rightBtnId, displayId, splitsId) {
   this.leftBtn = document.getElementById(leftBtnId);
   this.rightBtn = document.getElementById(rightBtnId);
   this.display = document.getElementById(displayId);
+  this.splits = document.getElementById(splitsId);
   this.time = undefined;
   this.timeIntervalId = undefined;
 }
@@ -16,7 +17,9 @@ Chronometer.prototype.startClick = function() {
   this.setStopBtn();
   this.setSplitBtn();
 
-  this.time = new Date();
+  if (!this.time) {
+    this.time = new Date();
+  }
   this.timeIntervalId = setInterval(Chronometer.onTimeUpdates, 1000, this);
 };
 
@@ -24,6 +27,12 @@ Chronometer.prototype.stopClick = function() {
   this.setStartBtn();
   this.setResetBtn();
   clearInterval(this.timeIntervalId);
+};
+
+Chronometer.prototype.splitClick = function() {
+  currentTime = document.createElement('li');
+  currentTime.appendChild(document.createTextNode(this.display.innerText));
+  this.splits.appendChild(currentTime);
 };
 
 Chronometer.prototype.setStartBtn = function() {

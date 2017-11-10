@@ -1,4 +1,4 @@
-var chronometer = new Chronometer("btnLeft", "btnRight", "display");
+var chronometer = new Chronometer("btnLeft", "btnRight", "display", "splits");
 // Start/Stop Button
 document.getElementById("btnLeft").addEventListener("click", function () {
   if (this.classList.contains('start')) {
@@ -10,5 +10,9 @@ document.getElementById("btnLeft").addEventListener("click", function () {
 
 // Reset/Split Button
 document.getElementById("btnRight").addEventListener("click", function () {
-  console.log("Right button clicked");
+  if (this.classList.contains('split')) {
+    chronometer.splitClick();
+  } else {
+    chronometer.resetClick();
+  }
 });
