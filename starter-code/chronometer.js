@@ -1,7 +1,8 @@
-function Chronometer(leftBtnId, rightBtnId, displayId, splitsId) {
+function Chronometer(leftBtnId, rightBtnId, displayId, splitsId, millisDisplayId) {
   this.leftBtn = document.getElementById(leftBtnId);
   this.rightBtn = document.getElementById(rightBtnId);
   this.display = document.getElementById(displayId);
+  this.millisDisplay = document.getElementById(millisDisplayId);
   this.splits = document.getElementById(splitsId);
   this.time = undefined;
   this.timeIntervalId = undefined;
@@ -20,7 +21,7 @@ Chronometer.prototype.startClick = function() {
   if (!this.time) {
     this.time = new Date();
   }
-  this.timeIntervalId = setInterval(Chronometer.onTimeUpdates, 1000, this);
+  this.timeIntervalId = setInterval(Chronometer.onTimeUpdates, 1, this);
 };
 
 Chronometer.prototype.stopClick = function() {
@@ -31,7 +32,7 @@ Chronometer.prototype.stopClick = function() {
 
 Chronometer.prototype.splitClick = function() {
   currentTime = document.createElement('li');
-  currentTime.appendChild(document.createTextNode(this.display.innerText));
+  currentTime.appendChild(document.createTextNode(this.display.innerText + ":" + this.millisDisplay.innerText));
   this.splits.appendChild(currentTime);
 };
 
@@ -73,4 +74,8 @@ Chronometer.prototype.setTime = function(date) {
   parsedTime = (date === undefined) ? '00:00' : ('0' + date.getMinutes()).slice(-2) + ":" + ( '0' + date.getSeconds()).slice(-2);
   this.display.innerHTML = '';
   this.display.appendChild(document.createTextNode(parsedTime));
+
+  parsedMillis = (date === undefined) ? '00' : ('0' + date.getMilliseconds()).slice(-2);
+  this.millisDisplay.innerHTML = '';
+  this.millisDisplay.appendChild(document.createTextNode(parsedMillis));
 };

@@ -75,6 +75,13 @@ body > section {
   width: 40px;
 }
 
+.millis {
+  font-size: 33px;
+  position: absolute;
+  bottom: 65px;
+  right: 14px;
+}
+
 .btn {
   border: 0;
   border-radius: 100%;
